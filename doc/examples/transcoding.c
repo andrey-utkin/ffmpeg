@@ -129,6 +129,9 @@ static int open_output_file(const char *filename)
                 enc_ctx->sample_aspect_ratio = dec_ctx->sample_aspect_ratio;
                 /* take first format from list of supported formats */
                 enc_ctx->pix_fmt = encoder->pix_fmts[0];
+                /* Below condition is true for libx264 */
+                if (enc_ctx->pix_fmt == AV_PIX_FMT_NONE)
+                    enc_ctx->pix_fmt = dec_ctx->pix_fmt;
                 /* video time_base can be set to whatever is handy and supported by encoder */
                 enc_ctx->time_base = dec_ctx->time_base;
             } else {

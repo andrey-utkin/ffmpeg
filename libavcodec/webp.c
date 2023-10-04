@@ -1563,7 +1563,7 @@ static int webp_decode_frame_common(AVCodecContext *avctx, uint8_t *data, int si
                 goto exif_end;
             }
 
-            bytestream2_seek(&exif_gb, ifd_of   fset, SEEK_SET);
+            bytestream2_seek(&exif_gb, ifd_offset, SEEK_SET);
             if (ff_exif_decode_ifd(avctx, &exif_gb, le, 0, &exif_metadata) < 0) {
                 av_log(avctx, AV_LOG_ERROR, "error decoding Exif data\n");
                 goto exif_end;
